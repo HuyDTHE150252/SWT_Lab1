@@ -37,15 +37,23 @@ public class MainApp {
         FruitView fv = new FruitView();
         OrderManager om = new OrderManager();
         OrderView ov = new OrderView();
+       
         fv.displayListFruit(fm.getFruitList());
-        System.out.print("Enter item: ");
-        int item = DataInput.checkInputIntLimit(1, fm.getFruitList().size());
+        System.out.print("Enter item: ");// if shopping dont have item annouce list item empty
+
+        int item = DataInput.checkInputIntLimit(1, fm.getFruitList().size());//annouce you selected name fruit by id
+        // check fruit existed 
         System.out.print("Enter quantity: ");
         int quantity = DataInput.checkInputIntLimit(1, fm.getFruitByItem(item).getQuantity());
+//        // must call check input Y/N
+//        Do you want to order now 
+//(Y/N). If customer selects N, the program returns to List of Fruit to continue ordering. If 
+//select Y
         om.shopping(fm.getFruitList(), fm.getFruitByItem(item), quantity);
         ov.displayListOrder(om.getListOrder());
         String name = DataInput.checkInputString("Enter name: ");
         om.putToHT(name);
+        // need add more fucntion to update quantity when user finished bought 
         System.out.println("Add successfull");
     }
 
