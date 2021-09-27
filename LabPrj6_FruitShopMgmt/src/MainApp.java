@@ -10,8 +10,8 @@ import view.UserView;
 public class MainApp {
     public static void main(String[] args) {
         UserManager u = new UserManager();
-        u.addAdmin();
-        
+        u.addAdmin();// add admin to controller manager
+        // remove shopping screen because when user login first--> depending on type -->shopping
         while (true) {
             System.out.println("FRUIT SHOP SYSTEM");
             System.out.println("  1.Login");

@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package view;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import common.AppConstant;
 import common.DataInput;
 import controller.UserManager;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import model.User;
 
@@ -20,16 +19,15 @@ import model.User;
 public class UserView {
 
     public static void manageUsers() {
-        
-        
-        
+
         UserManager userManager = new UserManager();
         while (true) {
             System.out.println("USERS MANAGEMENT");
             System.out.println("  1.Add new user");
             System.out.println("  2.Edit/update a user");
             System.out.println("  3.Delete a user");
-            System.out.println("  4.Main screen");
+
+            System.out.println("  5.Main screen");
 
             switch (DataInput.checkInputIntLimit(AppConstant.ENTER_CHOICE, 1, 4)) {
                 case 1:
@@ -41,6 +39,7 @@ public class UserView {
                 case 3:
                     userManager.deleteUser();
                     break;
+
                 default:
                     return;
             }
@@ -48,14 +47,11 @@ public class UserView {
     }
 
     
-
-    
-    
     public User login() {
         while (true) {
             User user = getUserInfo();
             try {
-                if (UserManager.checkLogin(user)) {
+                if (UserManager.checkLogin(user)){ //remvove account.dat
                     return user;
                 } else {
                     System.err.println("Username or password is incorrect! Please enter again!");
@@ -93,16 +89,14 @@ public class UserView {
         }
         return password;
     }
-
+    
     public void displayUserList(ArrayList<User> userList) {
-        int countItem = 1;
+        // remove countitem
         System.out.printf("%-12s%-20s%-20s%12s\n", "++ Code ++", "++ User Name ++", "++ Password ++", "++ Role ++");
         for (User user : userList) {
-            System.out.printf("%-10d%-20s%-20s%10.0f$\n", user.getUserId(), user.getUserName(),
-                    user.getPassword(), user.getType());
+            System.out.printf("%-10d%-20s%-20s%10.0d\n", user.getUserId(), user.getUserName(),
+                    user.getPassword(), user.getType());// role type int change format 
         }
     }
-    
-    
-    
+
 }
