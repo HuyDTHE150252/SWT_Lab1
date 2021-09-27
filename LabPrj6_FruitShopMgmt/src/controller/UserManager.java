@@ -26,7 +26,7 @@ import model.User;
  * @author kiennt
  */
 public class UserManager {
-
+     // add addAdmin add account admin into file user.dat
     public void addAdmin() {
         File f = new File(AppConstant.USER_DATA);
         if (!f.exists()) {
@@ -76,7 +76,7 @@ public class UserManager {
                 int type = Integer.parseInt(txt[3]);
                 listUsers.add(new User(id, name, pass, type));
             }
-        } catch (Exception e) {
+        } catch (IOException | NumberFormatException e) {
         }
         return listUsers;
     }
@@ -89,9 +89,9 @@ public class UserManager {
                 bw.write(u.toString());
                 bw.newLine();
             }
-            bw.close();
+            bw.close();   //add bw,fw close when finishing read,write object
             fw.close();
-        } catch (Exception e) {
+        } catch (IOException e) {//replace io exception
         }
     }
 
@@ -117,14 +117,15 @@ public class UserManager {
         //loop until user don't want to create fruit
         ArrayList<User> listUsers = getListAccountsFromData();
         while (true) {
-            String userName = DataInput.checkInputString("Enter user name: ");
-            String password = DataInput.checkInputString("Enter password: ");
+            String userName = DataInput.checkUsername("Enter user name: ");// validate userName >5 character
+            String password = DataInput.checkPassword("Enter password: ");// call checkpassword >=6 chars ,both letter and number
             int userType = DataInput.checkInputInt("Enter user type: ");
+            // id user auto increased not enter input
             listUsers.add(new User(listUsers.get(listUsers.size() - 1).getUserId() + 1, userName, password, userType));
-
+             
             //check user want to continue or not
             if (!DataInput.checkInputYN()) {
-                saveAccountToFile(listUsers);
+                saveAccountToFile(listUsers);// add save to file
                 return;
             }
 
@@ -140,6 +141,8 @@ public class UserManager {
                 System.err.println("User code does not exist!");
                 return;
             }
+            // change the way update user
+            /// if find userid=usercode use set  new value for user with input validate
 
             String userName = DataInput.checkInputString("Enter user name: ");
             String password = DataInput.checkInputString("Enter password: ");
@@ -148,7 +151,7 @@ public class UserManager {
                 if (u.getUserId() == userCode) {
                     u.setUserName(userName);
                     u.setPassword(password);
-                    saveAccountToFile(listUsers);
+                    saveAccountToFile(listUsers);// add save to file
                     return;
                 }
             }
@@ -165,14 +168,17 @@ public class UserManager {
                 System.err.println("Id does not exist!");
                 return;
             } else {
+                // add case check delete user when userid=usercode
                 for (User u : listUsers) {
                     if (u.getUserId() == userCode) {
                         listUsers.remove(u);
-                        saveAccountToFile(listUsers);
+                        saveAccountToFile(listUsers);// and save to file
                         return;
                     }
                 }
             }
         }
     }
+    
+    
 }

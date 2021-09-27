@@ -10,8 +10,9 @@ public class DataInput {
 
     private static final Scanner in = new Scanner(System.in);
     private static final String PASS_VALID = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
-
-    
+ 
+     private static final String Username_VALID = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$";//add new validate username
+ 
     //check user input number limit
     public static int checkInputIntLimit(String msg, int min, int max) {
         //loop until user input correct
@@ -29,7 +30,7 @@ public class DataInput {
             }
         }
     }
-
+    //add change password validate
     public static String checkPassword(String msg) {
         while (true) {
             System.out.print(msg);
@@ -37,7 +38,21 @@ public class DataInput {
             if (result.isEmpty()) {
                 System.err.println("Not empty! Please enter again!");
             } else if (!result.matches(PASS_VALID)) {
-                System.out.println("Password must include more than 6 chars, both letter and numbers!");
+                System.err.println("Password must include more than 6 chars, both letter and numbers!");
+            } else {
+                return result;
+            }
+        }
+    }
+    //add checkUsername validate
+    public static String checkUsername(String msg) {
+        while (true) {
+            System.out.print(msg);
+            String result = in.nextLine().trim();
+            if (result.isEmpty()) {
+                System.err.println("Not empty! Please enter again!");
+            } else if (!result.matches(Username_VALID)) {
+                System.err.println("Username must include more than 5 chars, both letter and numbers!");
             } else {
                 return result;
             }
