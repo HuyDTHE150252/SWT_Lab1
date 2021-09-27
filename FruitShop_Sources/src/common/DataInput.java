@@ -11,7 +11,6 @@ public class DataInput {
     private static final Scanner in = new Scanner(System.in);
     private static final String PASS_VALID = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
 
-    
     //check user input number limit
     public static int checkInputIntLimit(String msg, int min, int max) {
         //loop until user input correct
@@ -76,24 +75,7 @@ public class DataInput {
             }
         }
     }
- //check user input name type
-    private static final String NAME_REGEX = "[a-zA-Z][0-9]";
-    public static String checkInputName(String smg) {
-        //loop until user input correct
-        while (true) {
-            System.out.println(smg);
-            
-            String result = in.nextLine().trim();
-            
-            if (result.isEmpty()) {
-                System.err.println("Not empty");
-                System.out.print("Enter again: ");
-            } else {
-               if(result.matches(NAME_REGEX))
-                return result;
-            }
-        }
-    }
+
     //check user input int
     public static int checkInputInt(String smg) {
         //loop until user input correct
@@ -145,9 +127,9 @@ public class DataInput {
     }
 
     //check id exist
-    public static boolean fruitExisted(ArrayList<Fruit> lf, int id) {
+    public static boolean fruitExisted(ArrayList<Fruit> lf, String id) {
         for (Fruit fruit : lf) {
-            if (id == fruit.getFruitId()) {
+            if (id.equalsIgnoreCase(fruit.getFruitId())) {
                 return true;
             }
         }
@@ -164,9 +146,9 @@ public class DataInput {
         return false;
     }
     //check item exist or not
-    public static boolean checkItemExist(ArrayList<Order> lo, int id) {
+    public static boolean checkItemExist(ArrayList<Order> lo, String id) {
         for (Order order : lo) {
-            if (order.getFruitId() == id) {
+            if (order.getFruitId().equalsIgnoreCase(id)) {
                 return false;
             }
         }

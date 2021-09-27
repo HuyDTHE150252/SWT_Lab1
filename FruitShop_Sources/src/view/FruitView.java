@@ -15,9 +15,6 @@ public class FruitView {
 
     public static void manageFruits() {
         FruitManager userManager = new FruitManager();
-        //Huy-bug 1: Fruits list is not displayed when admin try to manage
-        displayListFruit(FruitManager.getFruitList());
-        
         while (true) {
             System.out.println("FRUITS MANAGEMENT");
             System.out.println("  1.Add new fruit");
@@ -41,15 +38,16 @@ public class FruitView {
         }
     }
 
-    
-    // Huy: set this method to static type
-    public static void displayListFruit(ArrayList<Fruit> fruitList) {
+    public void displayListFruit(ArrayList<Fruit> fruitList) {
         int countItem = 1;
-        System.out.printf("|++%s++|++%s++|++%s++|++%s++|++%s++|\n", "id", "Fruit name", "Origin", "Price", "Quantity");
+        System.out.printf("%-10s%-20s%-20s%10s\n", "Item", "Fruit name", "Origin", "Price");
         for (Fruit fruit : fruitList) {
             //check shop have item or not 
             if (fruit.getQuantity() != 0) {
-                System.out.printf("%5d%10s%15s%10.0f$%10d\n", countItem++,fruit.getFruitName(), fruit.getOrigin(), fruit.getPrice(), fruit.getQuantity());
+                // showing fruitId instead of numbers
+                // countItem here is wrong from the requirement
+                System.out.printf("%-10d%-20s%-20s%10.0f$\n", countItem++,
+                        fruit.getFruitName(), fruit.getOrigin(), fruit.getPrice());
             }
         }
     }
