@@ -23,7 +23,7 @@ public class MainApp {
                     if (user.getType() == 1) {
                         handleAdminMenu(user);
                     } else {
-                        handleSaleMenu(user);
+                        handleSaleMenu();//remove user parameter
                     }
                     break;
                 default:
@@ -59,7 +59,7 @@ public class MainApp {
 
     private static void handleAdminMenu(User user) {
         while (true) {
-            System.out.println("FRUIT SHOP SYSTEM");
+            System.out.println("ADMIN SYSTEM");// change  because FRUIT SHOP duplicated 3 times
             System.out.println("  1.Manage users");
             System.out.println("  2.Manage fruits");
             System.out.println("  3.View orders");
@@ -74,10 +74,10 @@ public class MainApp {
                     break;
                 case 3:
                     viewOrders();
-                    break;
+                    break;// need add break;
                 case 4:
                     goShopping();
-                    break;
+                    break;// need add break;
                 default:
                     return;
             }
@@ -90,9 +90,9 @@ public class MainApp {
         orderView.viewOrder(orderManager.getHT());
     }
 
-    private static void handleSaleMenu(User user) {
+    private static void handleSaleMenu() {//remove User user 
         while (true) {
-            System.out.println("FRUIT SHOP SYSTEM");
+            System.out.println(" SALE FRUIT SYSTEM");//change  because FRUIT SHOP duplicated 3 times
             System.out.println("  1.Manage fruits");
             System.out.println("  2.View orders");
             System.out.println("  3.Shopping");
@@ -103,7 +103,7 @@ public class MainApp {
                     break;
                 case 2:
                     viewOrders();
-                    break;
+                    break; 
                 case 3:
                     goShopping();
                     break;

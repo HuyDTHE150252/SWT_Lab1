@@ -44,7 +44,14 @@ public class DataInput {
             }
         }
     }
-    //add checkUsername validate
+    //add checkUsername validate: (username.length() >= 5 && Character.isLetter(username.charAt(0))) {
+//                for (User user : userList) {
+//                    if (user.getUserName().equalsIgnoreCase(username)) {
+//                        System.err.println("Username must be unique");
+//                        break;
+//                    } else {
+//                        return username;
+//                    }
     public static String checkUsername(String msg) {
         while (true) {
             System.out.print(msg);
@@ -110,6 +117,7 @@ public class DataInput {
         }
     }
     //check user input int
+    // need check max ,min
     public static int checkInputInt(String smg) {
         //loop until user input correct
         while (true) {
