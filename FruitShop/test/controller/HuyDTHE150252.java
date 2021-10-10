@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author TrungHuy: HuyDTHE150252
  */
-public class FruitManagerTest {
+public class HuyDTHE150252 {
     
-    public FruitManagerTest() {
+    public HuyDTHE150252() {
     }
     
     @BeforeClass
