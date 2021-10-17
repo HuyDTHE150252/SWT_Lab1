@@ -61,9 +61,10 @@ public class UserManagerTest {
 
         ArrayList<User> listUsers = new ArrayList<>();
         User user1 = new User(1, "duc", "123", 1);
-        User user2 = new User(2, "trung", "123", 3);
-        User user3 = new User(3, "linh", "123", 4);
+        User user2 = new User(2, "trung", "123a", 3);
+        User user3 = new User(3, "linh", "123b", 4);
         User user4 = new User(4, "ducnv", "abcd", 1);
+        
         listUsers.add(0, user1);
         listUsers.add(1, user2);
         listUsers.add(2, user3);
@@ -73,7 +74,7 @@ public class UserManagerTest {
 
         //TC1 (user name true, pass true)
         boolean result = testUserManager.checkLogin(user1);
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertEquals("TC1", expectedResult, result);
 
         //TC2 (user name true, pass false)
@@ -105,28 +106,43 @@ public class UserManagerTest {
         User user1 = new User(1, "duc", "123", 1);
         User user2 = new User(2, "trung", "123", 3);
         User user3 = new User(3, "linh", "123", 4);
-        User user4 = new User(4, "ducnv", "abcd", 1);
+        User user4 = new User(4,"ducnv","abcd",3);
 
         listUsers.add(0, user1);
         listUsers.add(1, user2);
         listUsers.add(2, user3);
-        listUsers.add(3, user4);
+                 listUsers.add(3, user4);
+       
+
         boolean flag = true;
-        String userName = "duc";
+        String userName = "duca";
 
         String password = "123";
         int userType = 1;
         User user = new User(5, userName, password, userType);
         listUsers.add(user);
         // TC1: 
-        assertEquals(true, flag);
+       String userName1 = "duca";
+
+        String password1 = "123";
+        int userType1 = 1;
+        User user6= new User(6, userName1, password1, userType1);
+        listUsers.add(user6);
 
         // TC2 
-        int expectedResult = 5;
+        int expectedResult = 6;
         assertEquals(expectedResult, listUsers.size());
 
-        // TC3 X
-        assertEquals(userName, listUsers.get(4).getUserName());
+       //tc3 ......
+       String userName2 = "trunga";
+
+        String password2 = "123a";
+        int userType2 = 1;
+        User user7= new User(7, userName2, password2, userType2);
+        listUsers.add(user7);
+        // TC4
+        int expectedResult1 = 7;
+        assertEquals(expectedResult1, listUsers.size());
 
     }
 
